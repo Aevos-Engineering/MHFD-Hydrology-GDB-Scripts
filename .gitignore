@@ -1,0 +1,50 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+
+# Build output
+dist/
+*.zip
+
+# ArcGIS: never commit data, projects or caches
+*.gdb/
+*.aprx
+*.atbx
+*.lock
+*.sr.lock
+*.shp
+*.shx
+*.dbf
+*.prj
+*.cpg
+*.sbn
+*.sbx
+*.shp.xml
+*.tif
+*.tfw
+*.ovr
+ImportLog/
+GpMessages/
+.backups/
+
+# SWMM / CUHP / PCSWMM model files and outputs (client data)
+*.inp
+*.rpt
+*.out
+*.chi
+*.ini
+*.xlsm
+*.xlsx
+*.csv
+*_QA.txt
+*_results.txt
+staging_out/
+
+# Office / OS clutter
+~$*
+Thumbs.db
+desktop.ini
+.DS_Store

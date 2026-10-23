@@ -1,0 +1,7 @@
+# Keep line endings consistent between Windows and other machines
+* text=auto
+*.py text eol=crlf
+*.pyt text eol=crlf
+*.md text
+*.lyrx text
+*.zip binary

@@ -1,0 +1,35 @@
+# Builds the toolbox zip that ArcGIS Pro users download, and attaches it to
+# the GitHub release. Runs when a release is published (see docs/RELEASING.md).
+name: Build release zip
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: write
+
+jobs:
+  zip:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build zip
+        run: |
+          name="MHFD_SWMM_to_Hydrology_GDB_Converter_${GITHUB_REF_NAME}"
+          mkdir -p "dist/$name"
+          cp MHFD_SWMM_to_Hydrology_GDB_Converter_v*.pyt README.md LICENSE "dist/$name/"
+          cp -r mhfd_hydro layer_files docs "dist/$name/"
+          find "dist/$name" -name '__pycache__' -prune -exec rm -rf {} +
+          (cd dist && zip -r "$name.zip" "$name")
+          echo "ZIP=dist/$name.zip" >> "$GITHUB_ENV"
+
+      - name: Attach to release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release upload "$GITHUB_REF_NAME" "$ZIP" --clobber
+          case "$GITHUB_REF_NAME" in
+            *beta*) gh release edit "$GITHUB_REF_NAME" --prerelease ;;
+          esac
