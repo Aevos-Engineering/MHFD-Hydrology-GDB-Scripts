@@ -1,6 +1,6 @@
 # MHFD SWMM to Hydrology GDB Converter
 
-An ArcGIS Pro toolbox from Aevos Engineering that turns a finished CUHP/SWMM model into the **MHFD Hydrology Geodatabase** deliverable (03 Hydrology), and writes a plain-language QA report that tells you what to fix before you submit.
+This ArcGIS Pro toolbox was designed to convert files into the MHFD Planning Hydrology Dataset GDB format. Also, a QA report is produced with checks to verify information before it is submitted to MHFD.
 
 ## What it's for
 
